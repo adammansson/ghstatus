@@ -1,8 +1,9 @@
+const request = require('request-promise');
+
 const statusButton = document.querySelector("#statusButton");
 const tableBody = document.querySelector("#tableBody");
 
 async function getStatus() {
-    const request = require('request-promise');
     return await request('https://www.githubstatus.com/',  { json: true });
 };
 
@@ -12,7 +13,6 @@ async function updateTable() {
     };
 
     getStatus().then(value => {
-        console.log(value);
         value.components.forEach(component => {
             if (component["name"] != "Visit www.githubstatus.com for more information") {
                 const row = document.createElement("tr");
